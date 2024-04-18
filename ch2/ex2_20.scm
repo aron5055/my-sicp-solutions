@@ -1,0 +1,8 @@
+(define (same_parity first . rest)
+    (define (filter pred? rest)
+        (cond ((null? rest) '())
+              ((pred? (car rest)) (cons (car rest) (filter pred? (cdr rest))))
+              (else (filter pred? (cdr rest)))))
+    (if (even? first)
+        (cons first (filter even? rest))
+        (cons first (filter odd? rest))))

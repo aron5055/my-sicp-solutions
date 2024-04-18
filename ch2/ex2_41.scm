@@ -1,0 +1,20 @@
+(define (enumerate start end)
+    (if (> start end)
+        '()
+        (cons start (enumerate (+ 1 start) end))))
+
+(define (ordered_triples n)
+    (append-map (lambda (i)
+                        (append-map (lambda (j)
+                                            (map (lambda (k)
+                                                         (list k j i))
+                                                 (enumerate 1 (- j 1))))
+                                    (enumerate 1 (- i 1))))
+                (enumerate 1 n)))
+
+(define (equal_sum sum)
+    (lambda (triple)
+        (= sum (+ (car triple) (cadr triple) (caddr triple)))))
+
+(define (three_sum sum n)
+    (filter (equal_sum sum) (ordered_triples n)))

@@ -1,0 +1,6 @@
+(define (fast_expt base n)
+    (define (iter base counter product)
+        (cond ((= counter 0) product)
+              ((even? counter) (iter (* base base) (/ counter 2.0) product))
+              (else (iter base (- counter 1) (* product base)))))
+    (iter base n 1))
