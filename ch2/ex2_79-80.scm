@@ -1,0 +1,22 @@
+(define (install_scheme_number_package )
+    (define (equ? number1 number2)
+        (= number1 number2))
+    (define (=zero? number)
+        (equ? number 0))
+    (put 'equ? 'scheme-number equ?)
+    (put '=zero? 'scheme-number =zero?))
+
+
+(define (install_rational_package )
+    (define (equ? number1 number2)
+        (= (* (numer number1) (denom number2)) (* (numer number2) (denom number1))))
+    (define (=zero? number)
+        (= (numer number) 0)))
+
+(define (install_complex_package )
+    (define (equ? number1 number2)
+        (and (= (real_part number1) (real_part number2)) (= (imag_part number1) (imag_part number2))))
+    (define (=zero? number)
+        (equ? number (make_complex_from_real_imag 0 0)))
+    (put )
+    (put ))
