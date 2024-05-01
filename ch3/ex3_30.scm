@@ -1,0 +1,6 @@
+(define (ripple-carry a b s c)
+    (define (iter a b c-in c-out s)
+        (cond ((null? a) s)
+              (else (full-adder (car a) (car b) c-in (car s) c-out)
+                    (iter (cdr a) (cdr b) c-out (make-wire) (cdr s)))))
+    (iter a b c (make-wire) s))
